@@ -1,18 +1,26 @@
-#include <TM1637Display.h>
+#define BUTTON 12
+#define RELAY 13
 
-#define CLK_SEG 8
-#define DIO_SEG 9
-
-int t = 0;
-
-TM1637Display dsp(CLK_SEG, DIO_SEG);
+int relay_state = 0;
+int button_state = 0;
 
 void setup() {
-  dsp.setBrightness(7);
+  pinMode(BUTTON, INPUT_PULLUP);
+  pinMode(RELAY, OUTPUT);
+  Serial.begin(9600);
+  
 }
 
 void loop() {
-  t = (++t) % 1500;
+  Serial.println(button_state);
   delay(10);
-  dsp.showNumberDec(t);
+  if(digitalRead(BUTTON) == LOW) {
+    if(button_state == 0) {
+      button_state = 1;
+      relay_state = ~relay_state;
+      digitalWrite(RELAY, relay_state);
+    }
+  } else {
+    button_state = 0;
+  }
 }

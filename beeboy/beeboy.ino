@@ -1,24 +1,28 @@
 #include <SoftwareSerial.h>
 #include <MsTimer2.h>
 #include <Servo.h>
-volatile unsigned char t2flag=0;
-int RX = 12;
-int TX = 13;
-SoftwareSerial mySerial(RX, TX);  
-int dir_l = 4;
-int dir_r = 7;
-int pwm_l = 6;
-int pwm_r = 5;
-int led_green = 9;
-int led_blue = 10;
-int led_red = 11;
-int piezo_pin = 8;
-int button = 16;
+
+#define dir_l 4
+#define dir_r 7
+#define pwm_l 6
+#define pwm_r 5
+
+#define led_green 9
+#define led_blue 10
+#define led_red 11
+#define piezo_pin 8
+#define RX = 12;
+#define TX = 13;
+#define button 16
 
 #define MOVING_SPEED 100
 
 int motor_seq = 0;
 int angle = 20;
+
+volatile unsigned char t2flag=0;
+
+SoftwareSerial mySerial(RX, TX);  
 Servo myservo;
 
 void setup() {
