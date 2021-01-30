@@ -7,8 +7,6 @@ int button_state = 0;
 void setup() {
   pinMode(BUTTON, INPUT_PULLUP);
   pinMode(RELAY, OUTPUT);
-  Serial.begin(9600);
-  
 }
 
 void loop() {
